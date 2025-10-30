@@ -83,7 +83,7 @@ const { body, validationResult } = require('express-validator');
 const app = express();
 const port = 5500;
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
 const exphbs = require('express-handlebars');
