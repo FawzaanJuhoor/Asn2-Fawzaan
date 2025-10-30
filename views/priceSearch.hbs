@@ -1,0 +1,113 @@
+<div class="content">
+    <h2>{{title}}</h2>
+    
+    <div class="search-form-container">
+        <form method="POST" action="/viewData/price" class="price-search-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="minPrice">Minimum Price ($)</label>
+                    <input type="number" 
+                           id="minPrice" 
+                           name="minPrice" 
+                           value="{{minPrice}}"
+                           min="0" 
+                           step="1" 
+                           placeholder="0"
+                           required
+                           class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="maxPrice">Maximum Price ($)</label>
+                    <input type="number" 
+                           id="maxPrice" 
+                           name="maxPrice" 
+                           value="{{maxPrice}}"
+                           min="1" 
+                           step="1" 
+                           placeholder="1000"
+                           required
+                           class="form-control">
+                </div>
+            </div>
+            
+            {{#if errors}}
+            <div class="validation-errors">
+                <h4>Please fix the following errors:</h4>
+                <ul>
+                    {{#each errors}}
+                    <li>{{this.msg}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/if}}
+            
+            <button type="submit" class="btn-search">Search Properties</button>
+        </form>
+    </div>
+
+    {{#if searchPerformed}}
+    <div class="results-section">
+        <div class="results-header">
+            <h3>Search Results</h3>
+            <p class="results-summary">
+                Found <strong>{{resultsCount}}</strong> properties within ${{minPrice}} - ${{maxPrice}}
+                (out of {{totalProperties}} total properties)
+            </p>
+        </div>
+
+        {{#if properties.length}}
+        <div class="table-container">
+            <table class="properties-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Property Name</th>
+                        <th>Host</th>
+                        <th>Verified</th>
+                        <th>Price</th>
+                        <th>Property ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each properties}}
+                    <tr>
+                        <td class="image-cell">
+                            <img src="{{this.first_image}}" alt="{{formatName this.NAME}}" class="table-image">
+                        </td>
+                        <td class="name-cell">
+                            {{formatName this.NAME}}
+                        </td>
+                        <td class="host-cell">
+                            <div class="host-name">{{this.host_name}}</div>
+                            <div class="host-id">ID: {{this.host_id}}</div>
+                        </td>
+                        <td class="verification-cell">
+                            <span class="verification-badge {{this.host_identity_verified}}">
+                                {{this.host_identity_verified}}
+                            </span>
+                        </td>
+                        <td class="price-cell highlighted">
+                            <strong>${{this.numericPrice}}</strong>
+                        </td>
+                        <td class="id-cell">{{this.id}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{else}}
+        <div class="no-results">
+            <div class="no-results-icon">🔍</div>
+            <h4>No properties found</h4>
+            <p>No properties match your price range of <strong>${{minPrice}} - ${{maxPrice}}</strong></p>
+            <p>Try adjusting your price range or <a href="/viewData/price">search again</a>.</p>
+        </div>
+        {{/if}}
+        
+        <div class="search-again">
+            <a href="/viewData/price" class="btn-search-again">New Search</a>
+        </div>
+    </div>
+    {{/if}}
+</div>

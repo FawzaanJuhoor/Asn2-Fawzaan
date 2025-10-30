@@ -1,0 +1,50 @@
+<div style="text-align: center; margin-bottom: 30px;">
+    <h1>Search Results for "{{searchTerm}}"</h1>
+    <p class="results-count">Found {{resultsCount}} properties</p>
+</div>
+
+{{#each results}}
+<div class="property-card">
+    <h2>{{this.NAME}}</h2>
+    
+    <div class="property-images">
+        {{#if this.thumbnail}}
+            <img src="{{this.thumbnail}}" alt="{{this.NAME}}" class="main-image">
+        {{/if}}
+        
+        {{#if this.images}}
+            <div class="image-gallery">
+                {{#each this.images}}
+                    <img src="{{this}}" alt="Property Image {{@index}}" class="gallery-image">
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="property-details">
+        <p><strong>ID:</strong> {{this.id}}</p>
+        <p><strong>Host Name:</strong> {{this.host_name}}</p>
+        <p><strong>Neighborhood:</strong> {{this.neighbourhood}}</p>
+        <p><strong>Room Type:</strong> {{this.room_type}}</p>
+        <p><strong>Price:</strong> {{this.price}}</p>
+        <p><strong>Minimum Nights:</strong> {{this.minimum_nights}}</p>
+        <p><strong>Number of Reviews:</strong> {{this.number_of_reviews}}</p>
+    </div>
+</div>
+{{/each}}
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="/search/name/" class="back-link">Search Again</a>
+</div>
+{{!-- /******************************************************************************
+***
+* ITE5315 – Assignment 2
+* I declare that this assignment is my own work in accordance with Humber Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Name: __Mohammad Fawzaan Khan Juhoor___ Student ID: __N01707140___ Date: ___28-10-2025___
+*
+*
+******************************************************************************
+**/ --}}

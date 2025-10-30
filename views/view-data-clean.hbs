@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="content">
+        <h1>Clean Airbnb Properties</h1>
+        
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>ID</th>
+                        <th>Property Name</th>
+                        <th>Country</th>
+                        <th>Neighborhood</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each properties}}
+                        {{#if this.NAME}}
+                        <tr>
+                            <td class="image-cell">
+                                {{#if this.thumbnail}}
+                                    <img src="{{this.thumbnail}}" alt="{{this.NAME}}" class="table-image" loading="lazy">
+                                {{else}}
+                                    <div class="no-image">No Image</div>
+                                {{/if}}
+                            </td>
+                            <td class="property-id">{{this.id}}</td>
+                            <td class="property-name">{{this.NAME}}</td>
+                            <td class="country">{{this.country}}</td>
+                            <td class="neighborhood">{{this.neighbourhood}}</td>
+                            <td class="price">{{this.price}}</td>
+                        </tr>
+                        {{/if}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="action-buttons">
+            <a href="/" class="back-link">Home</a>
+        </div>
+    </div>
+</div>

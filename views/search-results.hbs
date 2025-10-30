@@ -1,0 +1,46 @@
+<div class="property-card">
+    <h2>{{property.NAME}}</h2>
+    
+    <div class="property-images">
+        {{#if property.thumbnail}}
+            <img src="{{property.thumbnail}}" alt="{{property.NAME}}" class="main-image">
+        {{/if}}
+        
+        {{#if property.images}}
+            <div class="image-gallery">
+                {{#each property.images}}
+                    <img src="{{this}}" alt="Property Image {{@index}}" class="gallery-image">
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="property-details">
+        <p><strong>ID:</strong> {{property.id}}</p>
+        <p><strong>Host Name:</strong> {{property.host_name}}</p>
+        <p><strong>Neighborhood:</strong> {{property.neighbourhood}}</p>
+        <p><strong>Room Type:</strong> {{property.room_type}}</p>
+        <p><strong>Price:</strong> {{property.price}}</p>
+        <p><strong>Minimum Nights:</strong> {{property.minimum_nights}}</p>
+        <p><strong>Number of Reviews:</strong> {{property.number_of_reviews}}</p>
+        <p><strong>Last Review:</strong> {{property.last_review}}</p>
+        <p><strong>Availability (365 days):</strong> {{property.availability_365}}</p>
+        <p><strong>Country:</strong> {{property.country}}</p>
+        <p><strong>Country Code:</strong> {{property.country_code}}</p>
+    </div>
+    
+    <a href="/search/id/" class="back-link">Search Again</a>
+</div>
+
+{{!-- /******************************************************************************
+***
+* ITE5315 – Assignment 2
+* I declare that this assignment is my own work in accordance with Humber Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Name: __Mohammad Fawzaan Khan Juhoor___ Student ID: __N01707140___ Date: ___28-10-2025___
+*
+*
+******************************************************************************
+**/ --}}

@@ -1,0 +1,15 @@
+{
+  "name": "asn2-mohammad-fawzaan-khan-juhoor",
+  "version": "1.0.0",
+  "description": "ITE5315 Assignment 2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "express-validator": "^7.3.0"
+  }
+}
