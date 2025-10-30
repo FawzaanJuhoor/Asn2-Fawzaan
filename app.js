@@ -127,14 +127,26 @@ app.set('views', path.join(__dirname, 'views'));
 
 let airbnbData = [];
 
-fs.readFile('airbnb_data.json', 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error loading JSON data:', err);
-        return;
+let isDataLoaded = false;
+
+try {
+    airbnbData = require('./airbnb_small.json');
+    isDataLoaded = true;
+    console.log('JSON data loaded successfully via require(). Records:', airbnbData.length);
+} catch (error) {
+    console.error('Error loading JSON data via require():', error);
+    
+    // Fallback to fs.readFile for local development
+    const fs = require('fs');
+    try {
+        const data = fs.readFileSync(path.join(__dirname, 'airbnb_data.json'), 'utf8');
+        airbnbData = JSON.parse(data);
+        isDataLoaded = true;
+        console.log('JSON data loaded via fs.readFile. Records:', airbnbData.length);
+    } catch (fsError) {
+        console.error('Error loading JSON data via fs:', fsError);
     }
-    airbnbData = JSON.parse(data);
-    console.log('JSON data loaded successfully. Records:', airbnbData.length);
-});
+}
 
 app.get('/', (req, res) => {
     res.render('index', {
